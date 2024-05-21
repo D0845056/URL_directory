@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <title>Express</title>
+  <!--使用中文編碼-->
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="ja">
+  <script src="javascripts/main.js"></script>
+</head>
+
+
+<body>
+  <div class="content">
+    <h1>歷年五花肉價格查詢</h1>
+    <p>請選擇你要查詢的年份區間(限制在民國100年至112年)</p>
+    <!--只選擇年份的下拉框-->
+    <form id="select_year">
+      <label for="start_year">
+        <select name="start_year" id="start_year">
+          <option value="100">民國100年</option>
+          <option value="101">民國101年</option>
+          <option value="102">民國102年</option>
+          <option value="103">民國103年</option>
+          <option value="104">民國104年</option>
+          <option value="105">民國105年</option>
+          <option value="106">民國106年</option>
+          <option value="107">民國107年</option>
+          <option value="108">民國108年</option>
+          <option value="109">民國109年</option>
+          <option value="110">民國110年</option>
+          <option value="111">民國111年</option>
+          <option value="112">民國112年</option>
+        </select>
+      </label>
+      <nobr>至</nobr>
+      <label for="end_year">
+        <select name="end_year" id="end_year">
+          <option value="100">民國100年</option>
+          <option value="101">民國101年</option>
+          <option value="102">民國102年</option>
+          <option value="103">民國103年</option>
+          <option value="104">民國104年</option>
+          <option value="105">民國105年</option>
+          <option value="106">民國106年</option>
+          <option value="107">民國107年</option>
+          <option value="108">民國108年</option>
+          <option value="109">民國109年</option>
+          <option value="110">民國110年</option>
+          <option value="111">民國111年</option>
+          <option value="112">民國112年</option>
+        </select>
+      </label>
+      <input type="submit" value="提交">
+    </form>
+    <div class="table">
+      <table id="price_table">
+        <thead>
+        <tr>
+          <th>民國幾年</th>
+          <th>價格</th>
+        </tr>
+        </thead>
+        <tbody id="product-table-body">
+        <!--db data-->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</body>
+
+
+</html>

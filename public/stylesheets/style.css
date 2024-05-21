@@ -1,0 +1,57 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#price_table{
+  visibility: hidden;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1{
+  font-size: 50px;
+  margin: 0 0 20px 0;
+}
+
+.content{
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+p{
+  font-size: 20px;
+  margin: 0 0 20px 0;
+}
+
+
+table{
+  font-family: 'Oswald', sans-serif;
+  border-collapse: separate;
+  width: 60%;
+  height: 78%;
+  margin: 0 auto;
+  border-spacing: 0;
+  border: 1px solid #000;
+}
+
+th{
+  background-color: #6b675d;
+  color:#ffffff;
+  border: 1px solid #000;
+  width:25vw;
+  height:75px;
+}
+
+td{
+  border: 1px solid #000;
+  text-align: center;
+}
+
+
+
+
+
+
