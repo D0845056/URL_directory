@@ -1,30 +1,83 @@
-document.addEventListener('submit', async (e) => {
+//按下顯示所有按鈕 會顯示所有資料庫的資料 (GET)
+document.addEventListener('click', async (e) => {
     e.preventDefault();
+    if (e.target.id === 'show_all') {
+        const response = await fetch('/api/getUrl');
+        const data = await response.json();
+        console.log(data);
+        const table = document.getElementById('result_table');
 
-    const startYear = document.getElementById('start_year').value;
-    const endYear = document.getElementById('end_year').value;
-     if (startYear > endYear) {
-         alert('起始年份不可大於結束年份');
-         return;
-     }
+        table.innerHTML = '';
 
-    //Get /api/getProductPriceChange API data 以product-table-body id的表單顯示資料
-    const response = await fetch('http://localhost:3000/api/check?start_year=' + startYear + '&end_year=' + endYear);
-    const data = await response.json();
-    const tableBody = document.getElementById('product-table-body');
-    tableBody.innerHTML = '';
-    data.forEach((row) => {
-        const tr = document.createElement('tr');
-        const yearTd = document.createElement('td');
-        const priceTd = document.createElement('td');
+        table.innerHTML = `
+            <tr>
+                <th>名稱</th>
+                <th>網址</th>
+                <th>備註</th>
+            </tr>
+        `;
+        data.forEach((item) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.url_name}</td>
+                <td><a href="${item.url}" target="_blank">${item.url}</a></td>
+                <td>${item.url_illustrate}</td>
+            `;
+            table.appendChild(tr);
+        });
+    }
+    //按下新增按鈕 會新增一筆資料到資料庫 (GET)
+    else if (e.target.id === 'add') {
+        const url_name = document.getElementById('name').value;
+        const url = document.getElementById('url').value;
+        const url_illustrate = document.getElementById('note').value;
+        //如果沒有輸入名稱或網址或備註 則不新增 並跳出警告視窗
+        if (!url_name || !url || !url_illustrate) {
+            alert('請輸入完整資料!');
+            return;
+        }
+        //清空輸入欄位
+        document.getElementById('name').value = '';
+        document.getElementById('url').value = '';
+        document.getElementById('note').value = '';
+        const response = await fetch(`/api/insert?url_name=${url_name}&url=${url}&url_illustrate=${url_illustrate}`);
+        const data = await response.send;
+        //顯示新增成功 視窗
+        alert('新增成功');
+        console.log(data);
+    }
+    //按下查詢按鈕 會查詢含有某字串的資料 (GET)
+    else if (e.target.id === 'search_button') {
+        const keyword = document.getElementById('search').value;
+        const response = await fetch(`/api/search?keyword=${keyword}`);
+        const data = await response.json();
+        console.log(data);
+        //清空輸入欄位
+        document.getElementById('search').value = '';
+        //如果沒搜尋到資料 則跳出警告視窗
+        if (data.length === 0) {
+            alert('查無資料');
+            return;
+        }
+        const table = document.getElementById('result_table');
 
-        yearTd.textContent = "民國" + row.product_year + "年";
-        priceTd.textContent = row.product_price.toFixed(2) + "元";
+        table.innerHTML = '';
 
-        tr.appendChild(yearTd);
-        tr.appendChild(priceTd);
-
-        tableBody.appendChild(tr);
-    });
-    document.getElementById('price_table').style.visibility = 'visible';
+        table.innerHTML = `
+            <tr>
+                <th>名稱</th>
+                <th>網址</th>
+                <th>備註</th>
+            </tr>
+        `;
+        data.forEach((item) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.url_name}</td>
+                <td><a href="${item.url}" target="_blank">${item.url}</a></td>
+                <td>${item.url_illustrate}</td>
+            `;
+            table.appendChild(tr);
+        });
+    }
 });

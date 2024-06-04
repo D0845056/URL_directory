@@ -30,8 +30,6 @@ p{
 table{
   font-family: 'Oswald', sans-serif;
   border-collapse: separate;
-  width: 60%;
-  height: 78%;
   margin: 0 auto;
   border-spacing: 0;
   border: 1px solid #000;
@@ -41,6 +39,7 @@ th{
   background-color: #6b675d;
   color:#ffffff;
   border: 1px solid #000;
+  max-height: 10px;
   width:25vw;
   height:75px;
 }
@@ -48,6 +47,41 @@ th{
 td{
   border: 1px solid #000;
   text-align: center;
+  height: 50px; /* Set a fixed height */
+  overflow: auto; /* Add scrolling if content overflows */
+}
+
+.insert{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 20px 0;
+}
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 20px 0;
+}
+
+h1{
+  font-size: 50px;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+input{
+  width: 400px;
+  height: 50px;
+  font-size: 20px;
+}
+
+button{
+  width: 100px;
+  height: 50px;
+  justify-items: center;
+  margin: 0 10px;
+  font-size: 20px;
 }
 
 
